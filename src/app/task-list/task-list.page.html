@@ -11,6 +11,14 @@
 </ion-header>
 
 <ion-content>
+  @if (usandoCache()) {
+    <ion-chip color="warning" class="ion-margin">
+      <ion-icon name="cloud-offline-outline"></ion-icon>
+      <ion-label>Sin conexión — mostrando datos guardados</ion-label>
+    </ion-chip>
+    <ion-button fill="clear" size="small" (click)="cargarTareas()">Reintentar</ion-button>
+  }
+
   @if (loading()) {
     <div class="ion-text-center ion-padding">
       <ion-spinner></ion-spinner>
