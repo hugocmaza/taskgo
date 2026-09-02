@@ -1,4 +1,4 @@
-// Paleta de TaskGo Lite (podés personalizarla).
+// Paleta de TaskGo (personalizable).
 :root {
   --ion-color-primary: #4c6ef5;
   --ion-color-primary-rgb: 76, 110, 245;
@@ -6,4 +6,14 @@
   --ion-color-primary-contrast-rgb: 255, 255, 255;
   --ion-color-primary-shade: #4361d6;
   --ion-color-primary-tint: #5e7cf6;
+}
+
+// Modo oscuro manual: se activa agregando la clase .dark al <body>.
+body.dark {
+  --ion-background-color: #121212;
+  --ion-background-color-rgb: 18, 18, 18;
+  --ion-text-color: #f4f4f4;
+  --ion-text-color-rgb: 244, 244, 244;
+  --ion-toolbar-background: #1f1f1f;
+  --ion-item-background: #1a1a1a;
 }

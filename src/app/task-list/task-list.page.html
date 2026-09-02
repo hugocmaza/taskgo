@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Mis tareas</ion-title>
+    <ion-buttons slot="end">
+      <ion-toggle (ionChange)="toggleDarkMode($event)" aria-label="Modo oscuro"></ion-toggle>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    @for (task of tasks; track task.title) {
+      <ion-item>
+        <ion-checkbox slot="start" [checked]="task.done"></ion-checkbox>
+        <ion-label>{{ task.title }}</ion-label>
+        <ion-badge slot="end" [color]="colorFor(task.priority)">{{ task.priority }}</ion-badge>
+      </ion-item>
+    }
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
