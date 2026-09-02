@@ -21,3 +21,6 @@ npm-debug.log*
 !.vscode/extensions.json
 .DS_Store
 Thumbs.db
+
+# db.json lo genera json-server; se versiona recien en la Clase 5
+db.json

@@ -1,14 +1,24 @@
-import { Component } from '@angular/core';
-import { IonApp, IonRouterOutlet } from '@ionic/angular';
+import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import {
+  IonApp, IonSplitPane, IonMenu, IonHeader, IonToolbar, IonTitle, IonContent,
+  IonList, IonItem, IonRouterOutlet, MenuController,
+} from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [IonApp, IonRouterOutlet],
-  template: `
-    <ion-app>
-      <ion-router-outlet></ion-router-outlet>
-    </ion-app>
-  `,
+  imports: [
+    RouterLink, IonApp, IonSplitPane, IonMenu, IonHeader, IonToolbar, IonTitle,
+    IonContent, IonList, IonItem, IonRouterOutlet,
+  ],
+  templateUrl: './app.component.html',
 })
-export class AppComponent {}
+export class AppComponent {
+  private menu = inject(MenuController);
+
+  async filtrar(tipo: string) {
+    console.log('Filtrar por:', tipo);
+    await this.menu.close();
+  }
+}

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel,
   IonCheckbox, IonBadge, IonFab, IonFabButton, IonIcon, IonButtons, IonToggle,
+  IonMenuButton,
 } from '@ionic/angular';
 import { addIcons } from 'ionicons';
 import { add } from 'ionicons/icons';
@@ -18,6 +19,7 @@ interface Task {
   imports: [
     IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel,
     IonCheckbox, IonBadge, IonFab, IonFabButton, IonIcon, IonButtons, IonToggle,
+    IonMenuButton,
   ],
   templateUrl: './task-list.page.html',
   styleUrls: ['./task-list.page.scss'],
