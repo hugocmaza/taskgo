@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel,
   IonCheckbox, IonBadge, IonFab, IonFabButton, IonIcon, IonButtons, IonToggle,
@@ -17,7 +18,7 @@ interface Task {
   selector: 'app-task-list',
   standalone: true,
   imports: [
-    IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel,
+    RouterLink, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel,
     IonCheckbox, IonBadge, IonFab, IonFabButton, IonIcon, IonButtons, IonToggle,
     IonMenuButton,
   ],

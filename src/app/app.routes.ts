@@ -11,5 +11,9 @@ export const routes: Routes = [
       { path: '', redirectTo: 'tareas', pathMatch: 'full' },
     ],
   },
+  {
+    path: 'nueva',
+    loadComponent: () => import('./task-form/task-form.page').then((m) => m.TaskFormPage),
+  },
   { path: '', redirectTo: 'tareas', pathMatch: 'full' },
 ];

@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tareas"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nueva tarea</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <ion-item>
+      <ion-label position="stacked">Título</ion-label>
+      <ion-input formControlName="title" placeholder="Ej: Entregar informe"></ion-input>
+    </ion-item>
+    @if (title.touched && title.invalid) {
+      <ion-note color="danger">El título es obligatorio (mínimo 3 caracteres).</ion-note>
+    }
+
+    <ion-item>
+      <ion-label position="stacked">Descripción</ion-label>
+      <ion-input formControlName="description"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Vencimiento</ion-label>
+      <ion-datetime formControlName="dueDate" presentation="date"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Prioridad</ion-label>
+      <ion-select formControlName="priority">
+        <ion-select-option value="alta">Alta</ion-select-option>
+        <ion-select-option value="media">Media</ion-select-option>
+        <ion-select-option value="baja">Baja</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Completada</ion-label>
+      <ion-toggle formControlName="done"></ion-toggle>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" class="ion-margin-top">Guardar tarea</ion-button>
+  </form>
+</ion-content>
