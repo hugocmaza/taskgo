@@ -1,9 +1,15 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton, IonItem,
-  IonLabel, IonInput, IonSelect, IonSelectOption, IonDatetime, IonToggle, IonButton, IonNote,
+  IonLabel, IonInput, IonSelect, IonSelectOption, IonDatetime, IonToggle, IonButton,
+  IonNote, IonIcon, IonThumbnail,
 } from '@ionic/angular';
+import { addIcons } from 'ionicons';
+import { camera } from 'ionicons/icons';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
   selector: 'app-task-form',
@@ -11,12 +17,14 @@ import {
   imports: [
     ReactiveFormsModule, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons,
     IonBackButton, IonItem, IonLabel, IonInput, IonSelect, IonSelectOption, IonDatetime,
-    IonToggle, IonButton, IonNote,
+    IonToggle, IonButton, IonNote, IonIcon, IonThumbnail,
   ],
   templateUrl: './task-form.page.html',
 })
 export class TaskFormPage {
   private fb = inject(FormBuilder);
+
+  photoUrl = signal<string | null>(null);
 
   form = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(3)]],
@@ -26,8 +34,30 @@ export class TaskFormPage {
     done: [false],
   });
 
+  constructor() {
+    addIcons({ camera });
+  }
+
   get title() {
     return this.form.controls.title;
+  }
+
+  async takePhoto() {
+    const photo = await Camera.getPhoto({
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Camera,
+      quality: 80,
+    });
+
+    const fileName = `task-${Date.now()}.jpeg`;
+    await Filesystem.writeFile({
+      path: fileName,
+      data: photo.base64String!,
+      directory: Directory.Data,
+    });
+
+    const saved = await Filesystem.getUri({ path: fileName, directory: Directory.Data });
+    this.photoUrl.set(Capacitor.convertFileSrc(saved.uri));
   }
 
   submit() {
@@ -35,6 +65,6 @@ export class TaskFormPage {
       this.form.markAllAsTouched();
       return;
     }
-    console.log('Nueva tarea:', this.form.value);
+    console.log('Nueva tarea:', this.form.value, 'foto:', this.photoUrl());
   }
 }
