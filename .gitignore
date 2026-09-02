@@ -1,0 +1,23 @@
+# Dependencies
+/node_modules
+/www
+/dist
+/out-tsc
+
+# Angular / build cache
+.angular
+
+# Native
+/android
+/ios
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor
+.idea
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db

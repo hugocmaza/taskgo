@@ -1,0 +1,23 @@
+/*
+ * Estilos globales de Ionic.
+ * Importa el CSS base y utilidades. No hace falta modificar esto para el examen.
+ */
+
+/* Core CSS requerido por Ionic */
+@import "@ionic/angular/css/core.css";
+
+/* CSS básico de la app */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* CSS opcional de utilidades */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/* Modo oscuro por preferencia del sistema (Ionic 8+) */
+@import "@ionic/angular/css/palettes/dark.system.css";
