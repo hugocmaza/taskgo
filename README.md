@@ -35,7 +35,24 @@ docker compose up --build
 | `clase-09` | 9 | Geolocalización + notificaciones locales | Compila (nativo = dispositivo) |
 | `clase-10` | 10 | Swipe (item-sliding) + pull-to-refresh + modal animado | Compila + modal probado |
 | `clase-12` | 12 | Tests unitarios (servicio HTTP + formulario) | Specs typecheck (correr con `ng test` + Chrome) |
+| `clase-15-auth` | 15 (opcional) | Login/registro con JWT, guard, interceptor, logout | **Probado end-to-end**: guard, login, Bearer, logout |
 | `main` | — | App completa (equivale a `clase-12`) | — |
+
+### Sobre la rama `clase-15-auth`
+
+Agrega autenticación: `AuthService`, `authInterceptor`, `authGuard`, páginas de login y
+registro, y logout en Perfil. La API usa un **servidor de auth mínimo** (`auth-server.js`,
+solo `json-server`, sin dependencias extra) que expone `POST /register` y `POST /login`.
+
+> **Por qué no `json-server-auth`:** el paquete `json-server-auth@2.1.0` que menciona el
+> Módulo 15 tiene una **incompatibilidad real en Node 22** (su dependencia transitiva
+> `router`/`path-to-regexp@8` rompe la ruta `/666/*` y ni siquiera instala limpio). Por eso
+> esta rama usa `auth-server.js`, que es robusto, autocontenido y didáctico (se ve cómo un
+> endpoint emite un token). El token es un JWT "de mentira" (payload base64, sin firma real):
+> alcanza para practicar el flujo; en producción se usa un proveedor real + almacenamiento seguro.
+
+Probar: `docker compose up --build`, ir a `http://localhost:8100` (redirige a `/login`),
+crear una cuenta, y verás la lista. El interceptor adjunta `Authorization: Bearer` en cada pedido.
 
 > No hay rama para la Clase 7 (examen intermedio; ver el repo `taskgo-lite`) ni para la
 > Clase 11 (build nativo Android/iOS; ver el Anexo 16 del curso). La Clase 13 es la

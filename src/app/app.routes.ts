@@ -1,8 +1,12 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './services/auth.guard';
 
 export const routes: Routes = [
+  { path: 'login', loadComponent: () => import('./pages/login/login.page').then((m) => m.LoginPage) },
+  { path: 'registro', loadComponent: () => import('./pages/register/register.page').then((m) => m.RegisterPage) },
   {
     path: '',
+    canActivate: [authGuard],
     loadComponent: () => import('./tabs/tabs.page').then((m) => m.TabsPage),
     children: [
       { path: 'tareas', loadComponent: () => import('./task-list/task-list.page').then((m) => m.TaskListPage) },
@@ -13,6 +17,7 @@ export const routes: Routes = [
   },
   {
     path: 'nueva',
+    canActivate: [authGuard],
     loadComponent: () => import('./task-form/task-form.page').then((m) => m.TaskFormPage),
   },
   { path: '', redirectTo: 'tareas', pathMatch: 'full' },

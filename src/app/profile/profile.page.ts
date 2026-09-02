@@ -1,10 +1,14 @@
-import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonMenuButton } from '@ionic/angular';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import {
+  IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonMenuButton, IonButton,
+} from '@ionic/angular';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonMenuButton],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonMenuButton, IonButton],
   template: `
     <ion-header>
       <ion-toolbar color="primary">
@@ -14,7 +18,16 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonMenuButton 
     </ion-header>
     <ion-content class="ion-padding">
       <p>Perfil del usuario (pantalla de ejemplo).</p>
+      <ion-button expand="block" color="danger" (click)="cerrarSesion()">Cerrar sesión</ion-button>
     </ion-content>
   `,
 })
-export class ProfilePage {}
+export class ProfilePage {
+  private auth = inject(AuthService);
+  private router = inject(Router);
+
+  async cerrarSesion() {
+    await this.auth.logout();
+    this.router.navigate(['/login']);
+  }
+}

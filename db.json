@@ -1,4 +1,5 @@
 {
+  "users": [],
   "tasks": [
     { "id": 1, "title": "Entregar informe mensual", "description": "Incluir métricas del sprint", "dueDate": "2026-09-05", "priority": "alta", "done": false },
     { "id": 2, "title": "Comprar materiales de oficina", "description": "", "dueDate": "2026-09-08", "priority": "media", "done": false },

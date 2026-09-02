@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary"><ion-title>Ingresar</ion-title></ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input type="email" formControlName="email" placeholder="tu@email.com"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Contraseña</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+
+    @if (error) {
+      <ion-text color="danger"><p>{{ error }}</p></ion-text>
+    }
+
+    <ion-button expand="block" type="submit" class="ion-margin-top">Ingresar</ion-button>
+    <ion-button expand="block" fill="clear" routerLink="/registro">Crear cuenta</ion-button>
+  </form>
+</ion-content>
