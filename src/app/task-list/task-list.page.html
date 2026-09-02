@@ -11,11 +11,23 @@
 </ion-header>
 
 <ion-content>
+  @if (loading()) {
+    <div class="ion-text-center ion-padding">
+      <ion-spinner></ion-spinner>
+    </div>
+  }
+  @if (error()) {
+    <ion-text color="danger"><p class="ion-padding">{{ error() }}</p></ion-text>
+  }
+
   <ion-list>
-    @for (task of tasks; track task.title) {
+    @for (task of tasks(); track task.id) {
       <ion-item>
         <ion-checkbox slot="start" [checked]="task.done"></ion-checkbox>
-        <ion-label>{{ task.title }}</ion-label>
+        <ion-label>
+          <h2>{{ task.title }}</h2>
+          <p>Vence: {{ task.dueDate }}</p>
+        </ion-label>
         <ion-badge slot="end" [color]="colorFor(task.priority)">{{ task.priority }}</ion-badge>
       </ion-item>
     }
