@@ -48,6 +48,17 @@
         Tomar foto
       </ion-button>
     </ion-item>
+
+    <ion-item lines="none">
+      <ion-label>
+        Ubicación
+        @if (ubicacion()) { <p>{{ ubicacion() }}</p> }
+      </ion-label>
+      <ion-button fill="outline" slot="end" (click)="guardarUbicacion()">
+        <ion-icon name="location" slot="start"></ion-icon>
+        Usar mi ubicación
+      </ion-button>
+    </ion-item>
     @if (photoUrl()) {
       <ion-thumbnail style="width: 120px; height: 120px; margin: 12px auto;">
         <img [src]="photoUrl()" alt="Foto de la tarea" />
